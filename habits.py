@@ -22,7 +22,7 @@ class Habits():
         self.habits.save()
     
     #по id? db.bios.find( { _id: 5 } )    
-    def delet(self, id_habit):
+    def delete(self, id_habit):
         self.habits.delete_one({ '_id': id_habit })
     
     def update(self, last, new):
