@@ -4,6 +4,10 @@ from pymongo import MongoClient
 import datetime
 
 class Habits():
+    '''
+    Данный класс работает с удалекнной базой данной ПРИВЫЧЕК.
+    
+    '''
     
     def __init__(self):
         
@@ -20,8 +24,7 @@ class Habits():
     	
     def save(self):
         self.habits.save()
-    
-    #по id? db.bios.find( { _id: 5 } )    
+   
     def delete(self, id_habit):
         self.habits.delete_one({ '_id': id_habit })
     
