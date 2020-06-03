@@ -19,8 +19,8 @@ class Persons():
     def add(self, el):
         self.persons.insert(el)
         
-    def get(self, name):
-        return self.persons.find({'name': name})  
+    def get(self, user):
+        return self.persons.find({'user': user})  
     	
     def save(self):
         self.persons.save()
