@@ -6,7 +6,7 @@ from app.DB.persons import Persons
 db = Habits()
 @app.route('/')
 def get_db_habits():
-    return ""
+    return "HHHHHH"
 
 @app.route('/add')
 def add():
@@ -23,8 +23,5 @@ def login():
 
 @app.route('/index') 
 def index():
- import subprocess
- cmd = subprocess.Popen(['sudo', './ps_mem'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
- out,error = cmd.communicate()
- memory = out.splitlines()
- return render_template('index.html', memory=memory)
+ return '''<div style="font-size:150pz">Test!</div>'''
+
