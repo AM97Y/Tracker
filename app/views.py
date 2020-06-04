@@ -5,8 +5,9 @@ from app.DB.persons import Persons
 
 db = Habits()
 @app.route('/')
+@app.route('/index') 
 def get_db_habits():
-    return "HHHHHH"
+    return '''<div style="font-size:150pz">Test!</div>'''
 
 @app.route('/add')
 def add():
@@ -20,8 +21,3 @@ def add():
 @app.route('/login')
 def login():
     pass
-
-@app.route('/index') 
-def index():
- return '''<div style="font-size:150pz">Test!</div>'''
-
