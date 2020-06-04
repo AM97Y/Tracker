@@ -2,10 +2,11 @@ from flask import render_template
 from app import app
 from app.DB.habits import Habits
 from app.DB.persons import Persons
+
 db = Habits()
 @app.route('/')
 def get_db_habits():
-    return db
+    return ""
 
 @app.route('/add')
 def add():
