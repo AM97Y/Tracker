@@ -1,15 +1,10 @@
-from flask import render_template
-from app import app
-from app.DB.habits import Habits
-from app.DB.persons import Persons
-from datetime import datetime, timedelta
 from flask import Flask	
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
-db = Habits()
+
 @app.route('/')
 @app.route('/index')
 def main():
