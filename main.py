@@ -1,4 +1,5 @@
 from flask import Flask	
+from flask import render_template	
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -18,4 +19,5 @@ def main():
 @app.route('/')
 @app.route('/index')
 def root():
-    return app.static_url_path('react_traker/public/index.html')
+	user = { 'nickname': 'Miguel' }
+    return render_template("index.html",title = 'Home',user = user)
