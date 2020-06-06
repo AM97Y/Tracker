@@ -5,8 +5,8 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
 
-@app.route('/')
-@app.route('/index')
+#@app.route('/')
+#@app.route('/index')
 def main():
 	now = datetime.utcnow() + timedelta(hours = 3)
 	weekend = datetime.strptime('2020-06-14 23:59:59', '%Y-%m-%d %H:%M:%S')
@@ -14,3 +14,8 @@ def main():
 	return '''
 		<div style="font-size:150pz">До начала приема работы осталось {weekend_minutes_count} минут. Держимся!</div>
 	'''.format(weekend_minutes_count=weekend_minutes_count)
+
+@app.route('/')
+@app.route('/index')
+def root():
+    return app.send_static_file('react_traker/public/index.html')
