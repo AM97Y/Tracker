@@ -2,7 +2,7 @@ from flask import Flask
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './react_traker/public'
+app.config['UPLOAD_FOLDER'] = 'react_traker/public'
 app.config['JSON_AS_ASCII'] = False
 
 
