@@ -1,7 +1,7 @@
 from flask import Flask	
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 app.config['JSON_AS_ASCII'] = False
 
 
@@ -18,4 +18,4 @@ def main():
 @app.route('/')
 @app.route('/index')
 def root():
-    return app.send_static_file("react_traker/public/index.html")
+    return app.send_static_file("/react_traker/public/index.html")
