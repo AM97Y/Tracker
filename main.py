@@ -18,4 +18,4 @@ def main():
 @app.route('/')
 @app.route('/index')
 def root():
-    return app.send_static_file('index.html')
+    return app.static_url_path('react_traker/public/index.html')
