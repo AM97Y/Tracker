@@ -1,10 +1,10 @@
 from flask import Flask	
 from datetime import datetime, timedelta
 
-UPLOAD_FOLDER = '/react_traker/public'
+#UPLOAD_FOLDER = '/react_traker/public'
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['JSON_AS_ASCII'] = False
 
 
@@ -12,8 +12,8 @@ app.config['JSON_AS_ASCII'] = False
 #@app.route('/index')
 @app.route('/')
 @app.route('/index')
-def root():
-    return app.send_static_file("index.html")
+#def root():
+#    return app.send_static_file("index.html")
 
 def main():
 	now = datetime.utcnow() + timedelta(hours = 3)
