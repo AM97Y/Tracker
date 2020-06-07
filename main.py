@@ -3,16 +3,13 @@ from datetime import datetime, timedelta
 
 #UPLOAD_FOLDER = '/react_traker/public'
 
-#app = Flask(__name__)
-app = Flask(__name__, static_folder='build', static_url_path='')
+app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
 #def root():
 #    return app.send_static_file("index.html")
 @app.route('/')
-def index():
-	return app.send_static_file('index.html')
-#@app.route('/index')
+@app.route('/index')
 
 def main():
 	now = datetime.utcnow() + timedelta(hours = 3)
