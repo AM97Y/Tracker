@@ -17,5 +17,5 @@ def index():
 
 @app.route('/react_tracker/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static', 'images'),
+    return send_from_directory(os.path.join(app.root_path, 'react_tracker', 'public'),
                                'favicon.ico', mimetype='image/png')
