@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 #UPLOAD_FOLDER = '/react_traker/public'
 
 #app = Flask(__name__)
-app = Flask(__name__, static_folder='./public', static_url_path='/')
+app = Flask(__name__, static_folder='./react_tracker/public', static_url_path='/')
 app.config['JSON_AS_ASCII'] = False
 
 #def root():
