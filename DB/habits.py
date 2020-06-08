@@ -30,3 +30,6 @@ class Habits():
     
     def update(self, last, new):
         self.habits.update_many(last, new)
+
+    def get_all(self):
+        return self.habits.find()
