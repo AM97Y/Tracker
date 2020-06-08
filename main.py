@@ -11,7 +11,10 @@ app.config['UPLOAD_FOLDER'] = 'react_tracker/public'
 def index():
     db = Habits()
     print(db.get_all())
-    return app.send_static_file('index.html')
+    return '''
+		<div style="font-size:150pz">Base: {weekend_minutes_count} </div>
+	'''.format(weekend_minutes_count=str(db.get_all()))
+    #return app.send_static_file('index.html')
 
 @app.route('/favicon.ico')
 def favicon():
