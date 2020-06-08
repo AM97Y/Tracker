@@ -10,5 +10,6 @@ app.config['UPLOAD_FOLDER'] = '/public'
 CORS(app)
 
 @app.route('/')
+@cross_origin(origin='*')
 def index():
     return app.send_static_file('index.html')
