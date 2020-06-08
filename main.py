@@ -9,7 +9,7 @@ app.config['UPLOAD_FOLDER'] = 'react_tracker/public'
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/loadfile/<filename>')
-def uploaded_file(filename):
-    image = send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-    return image
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'react_tracker/puplic'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
