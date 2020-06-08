@@ -1,6 +1,7 @@
-from flask import Flask	
+from flask import Flask, send_from_directory
 from datetime import datetime, timedelta
 from DB.habits import Habits
+import os
 
 app = Flask(__name__, static_folder='./react_tracker/public/', static_url_path='/')
 app.config['JSON_AS_ASCII'] = False
