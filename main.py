@@ -11,5 +11,5 @@ def index():
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'react_tracker/puplic'),
+    return send_from_directory(os.path.join(app.root_path, './react_tracker/puplic'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
