@@ -12,7 +12,8 @@ CORS(app)
 @app.route('/')
 @cross_origin(origin='*')
 def index():
-    return ''' <div>Hello</div> '''
+    hobbit_list = str(flask_back.DB.parser.get_data())
+    return ''' <div>{hobbit_list}</div> '''.format(hobbit_list = hobbit_list)
 
 #def get():
     #return flask_back.DB.parser.get_data()
