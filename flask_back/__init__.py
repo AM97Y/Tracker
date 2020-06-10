@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
 import os
 
-app = Flask(__name__, static_url_path='/')
+app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app)
 
@@ -14,6 +14,6 @@ CORS(app)
 def index():
     return ''' <div>Hello</div> '''
 
-def get():
-    return flask_back.DB.parser.get_data()
+#def get():
+    #return flask_back.DB.parser.get_data()
 
