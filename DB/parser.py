@@ -16,7 +16,7 @@ def get_habit(name_habit):
         return None
 def check():
     db = Habits()
-    db.del_habits()
+    #db.del_habits()
     db.add('Зарядка', 'admin', '1-04-2020', '15-04-2020')
     db.add_check('Зарядка', 'admin', '1-04-2020', '15-04-2020')
 check()
