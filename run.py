@@ -1,3 +1,4 @@
-from flask import app
+from flask_back import app
 
-app.run(debug=True)
+app.debug = True
+app.run()
