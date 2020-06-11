@@ -13,35 +13,34 @@ class Habits():
         
         self.client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0-2quke.mongodb.net/test?retryWrites=true&w=majority")
         self.habits = self.client.habits.habits
-        print(self.habits)
-    
-              
-    def add(self, name, user, start, end):
+             
+    def add(self, name, id_user, start, end):
         #Формат вроемени по договоренности '06-06-2018'
         el = {"name": str(name),
             	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
-                 "user": str(user),
+                 "id_user": id_user,
             	 "end": datetime.datetime.strptime(end, '%d-%m-%Y'),
             	 "check": []
             }
+        
         self.habits.insert(el)
     
-    def add_check(self, name, user, start, end):
+    def add_check(self, name, id_user, start, end):
         #Формат вроемени по договоренности '06-06-2018'
         el = {"name": str(name),
           	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
-             "user": str(user),
+             "id_user": id_user,
           	 "end": datetime.datetime.strptime(end, '%d-%m-%Y'),
-            }
+             }
+        
         find_elem = self.habits.find(el)
-        print(find_elem)
         check = list(find_elem[0]['check'])
         check.append(datetime.datetime.now())
         self.habits.update(el, {'$set': {'check': check}})
         
         
-    def get(self, name_habit):
-        return self.habits.find({'name': name_habit})  
+    def get(self, arg={'name': "Зарядка"}):
+        return self.habits.find(arg)  
     	
     def save(self):
         self.habits.save()
