@@ -19,7 +19,7 @@ def index():
 @cross_origin(origin='*')
 
 def authorization():
-    user = flask_back.DB.parser.get_person_data(request.args['login'],request.args['password'])
+    user = flask_back.DB.parser.get_person_data()
     return '''
 		<div style="font-size:150pz">User: {user}</div>
 	'''.format(user=user)
