@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
@@ -14,12 +15,13 @@ def index():
     return '''<div>Hey</div>'''
 
 
-'''
 @app.route('/authorization/<login>/<password>')
 @cross_origin(origin='*')
-def authorization(login, password):
-    return flask_back.DB.parser.get_person_data(login=login, password=password)
 
+def authorization():
+    return flask_back.DB.parser.get_person_data(request.args['login'],request.args['password'])
+
+'''
 @app.route('/add_person/<login>/<password>')
 @cross_origin(origin='*')
 def add_person(login, password):
