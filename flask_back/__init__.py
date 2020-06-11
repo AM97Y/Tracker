@@ -13,6 +13,8 @@ CORS(app)
 def index():
     return '''<div>Hey</div>'''
 
+
+'''
 @app.route('/authorization/<login>/<password>')
 @cross_origin(origin='*')
 def authorization(login, password):
@@ -32,3 +34,4 @@ def add_person_habit(login, password, name, start, end):
 @cross_origin(origin='*')
 def add_check_for_persons_habit(login, password, name, start, end):
     return flask_back.DB.parser.add_check_for_person_habit(login=login, password=password, name=name, start=start, end=end)
+'''
