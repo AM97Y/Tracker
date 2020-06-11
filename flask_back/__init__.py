@@ -24,19 +24,18 @@ def authorization():
 		<div style="font-size:150pz">User: {user}</div>
 	'''.format(user=user)
 
-'''
-@app.route('/add_person/<login>/<password>')
+
+@app.route('/add_person')
 @cross_origin(origin='*')
 def add_person(login, password):
-    return flask_back.DB.parser.add_person(login=login, password=password)
+    return flask_back.DB.parser.add_person(request.args.get('login'),request.args.get('password'))
 
-@app.route('/add_person/<login>/<password>/<name>/<start/<end>')
+@app.route('/add_person')
 @cross_origin(origin='*')
 def add_person_habit(login, password, name, start, end):
-    return flask_back.DB.parser.add_person_habit(login=login, password=password, name=name, start=start, end=end)
+    return flask_back.DB.parser.add_person_habit(request.args.get('login'),request.args.get('password'),request.args.get('name'),request.args.get('start'), request.args.get('end'))
 
-@app.route('/add_person/<login>/<password>/<name>/<start/<end>')
+@app.route('/add_person')
 @cross_origin(origin='*')
 def add_check_for_persons_habit(login, password, name, start, end):
-    return flask_back.DB.parser.add_check_for_person_habit(login=login, password=password, name=name, start=start, end=end)
-'''
+    return flask_back.DB.parser.add_check_for_person_habit(request.args.get('login'),request.args.get('password'),request.args.get('name'),request.args.get('start'), request.args.get('end'))
