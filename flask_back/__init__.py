@@ -15,12 +15,11 @@ def index():
     return '''<div>Hey</div>'''
 
 
-@app.route('/authorization/<login>/<password>')
+@app.route('/authorization')
 @cross_origin(origin='*')
 
 def authorization():
-    return '''<div>123</div>'''
-    #flask_back.DB.parser.get_person_data(request.args['login'],request.args['password'])
+    return flask_back.DB.parser.get_person_data(request.args['login'],request.args['password'])
 
 '''
 @app.route('/add_person/<login>/<password>')
