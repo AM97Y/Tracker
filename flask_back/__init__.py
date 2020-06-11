@@ -10,10 +10,8 @@ CORS(app)
 
 
 @app.route('/')
-@cross_origin(origin='*')
 def index():
-    #hobbit_list = str(flask_back.DB.parser.get_data())
-    return ''' <div>Hey</div> '''
+    return '''<div>Hey</div>'''
 
 @app.route('/authorization/<login>/<password>')
 @cross_origin(origin='*')
