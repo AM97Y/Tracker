@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import jsonify
 from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
@@ -17,8 +18,8 @@ def index():
 
 @app.route('/authorization')
 @cross_origin(origin='*')
-def authorization():
-    return ("{" + "\"" + "resp" + "\"" + ":" + str(flask_back.DB.parser.get_person_data(request.args.get('login'),request.args.get('password'))[0]) + '}').to_json()
+def authorization(): 
+    return jsonify("{" + "\"" + "resp" + "\"" + ":" + str(flask_back.DB.parser.get_person_data(request.args.get('login'),request.args.get('password'))[0]) + '}')
 
 
 @app.route('/add_person')
