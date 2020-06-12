@@ -18,7 +18,8 @@ def index():
 @app.route('/authorization')
 @cross_origin(origin='*')
 def authorization():
-    return flask_back.DB.parser.get_person_data(request.args.get('login'),request.args.get('password')).to_json() 
+    return "Check return"
+    #return flask_back.DB.parser.get_person_data(request.args.get('login'),request.args.get('password')).to_json() 
 
 
 @app.route('/add_person')
