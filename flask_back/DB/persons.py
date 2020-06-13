@@ -5,7 +5,7 @@ import datetime
 
 class Persons():
     '''
-    Данный класс работает с удалекнной базой данной персон.
+    Данный класс работает с удаленной базой данной персон.
     
     '''
     
@@ -13,7 +13,6 @@ class Persons():
         self.client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0-2quke.mongodb.net/test?retryWrites=true&w=majority")
         self.persons = self.client.persons.persons
         print(self.persons)
-    
               
     def add(self, el):
         self.persons.insert(el)

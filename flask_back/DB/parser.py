@@ -1,60 +1,68 @@
 from flask_back.DB.habits import Habits
 from flask_back.DB.persons import Persons
-#from habits import Habits
-#from persons import Persons
 
+def get_person_id(login='test', password='test'):
+    '''
+    Возвращает id полдьзователя по login, password.
 
-def get_person_data(login='test', password='test'):
-    db_habits = Habits()
+    '''
     db_persons = Persons()
     
-    habits = []
     person = db_persons.get_one({'login': login, 'password': password})
     _id = person['_id']
+
+    return _id
+
+def get_person_data(_id):
+    '''
+    Возвращает все привычки пользователя.
     
+    '''
+    db_habits = Habits()
+    habits = []
     for habit in db_habits.get({'id_user': _id}):    
         habits.append(habit)
     
     return habits
     
 def add_person(login, password):
-    if check_person(login, password):
+    '''
+    Добовляет новую персону.
+    
+    '''
+    if check_person(login):
         db_persons = Persons()
         db_persons.add({'login': str(login), 'password': str(password)})
+        return True
     else:
         return None
 
-def check_person(login, password):
+def check_person(login):
+    '''
+    Проверяет наличие пользователя с такпим именем.
+    
+    '''
     db_persons = Persons()
-    person = db_persons.get({'login': login, 'password': password})
+    person = db_persons.get({'login': login})
     
     if person.count() == 1:
         return False
     else:
         return True
     
-def add_person_habit(login, password, name, start, end):
-    db_habits = Habits()
-    db_persons = Persons()
-    person = db_persons.get_one({'login': login, 'password': password})
-    _id = person['_id']
-    db_habits.add(name, _id, start, end)
+def add_person_habit(_id, name, start, end):
+    '''
+    Добавляет новую привычку пользователю.
     
-def check():
+    '''
     db_habits = Habits()
-    db_habits.del_habits()
-    db_habits.add('Зарядка', 'admin', '1-04-2020', '15-04-2020')
-    db_habits.add_check('Зарядка', 'admin', '1-04-2020', '15-04-2020')
+    db_habits.add(name, _id, start, end)
 
-def add_check_for_person_habit(login, password, name, start, end):
+def add_check_for_person_habit(_id, name, start, end):
+    '''
+    Добавляет информаци о выполнение привычки.
+    
+    '''
     db_habits = Habits()
-    db_persons = Persons()
-    person = db_persons.get_one({'login': login, 'password': password})
-    _id = person['_id']
     db_habits.add_check(name, _id, start, end)
-'''    
-check()
-add_person_habit('test', 'test', "Бегать", '06-06-2018', '06-06-2018')
-add_check_for_persons_habit('test', 'test', "Бегать", '06-06-2018', '06-06-2018')
-print(get_person_data(login='test', password='test'))
-'''
+
