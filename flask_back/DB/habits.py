@@ -2,6 +2,7 @@ import json
 import pymongo
 from pymongo import MongoClient
 import datetime
+from bson.objectid import ObjectId
 
 class Habits():
     '''
@@ -18,7 +19,7 @@ class Habits():
         #Формат вроемени по договоренности '06-06-2018'
         el = {"name": str(name),
             	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
-                 "id_user": id_user,
+                 "id_user": ObjectId(id_user),
             	 "end": datetime.datetime.strptime(end, '%d-%m-%Y'),
             	 "check": []
             }
@@ -29,7 +30,7 @@ class Habits():
         #Формат вроемени по договоренности '06-06-2018'
         el = {"name": str(name),
           	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
-             "id_user": id_user,
+             "id_user": ObjectId(id_user),
           	 "end": datetime.datetime.strptime(end, '%d-%m-%Y'),
              }
         

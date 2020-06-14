@@ -1,5 +1,6 @@
 from flask_back.DB.habits import Habits
 from flask_back.DB.persons import Persons
+from bson.objectid import ObjectId
 
 def get_person_id(login='test', password='test'):
     '''
@@ -20,7 +21,7 @@ def get_person_data(_id):
     '''
     db_habits = Habits()
     habits = []
-    for habit in db_habits.get({'id_user': _id}):    
+    for habit in db_habits.get({'id_user': ObjectId(_id)}):    
         habits.append(habit)
     
     return habits
