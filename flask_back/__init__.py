@@ -29,14 +29,14 @@ def get_data():
 @app.route('/add_person')
 @cross_origin(origin='*')
 def add_person():
-    return flask_back.DB.parser.add_person(request.args.get('login'),request.args.get('password'))
+    return jsonify(str(flask_back.DB.parser.add_person(request.args.get('login'),request.args.get('password'))))
 
 @app.route('/add_person_habit')
 @cross_origin(origin='*')
 def add_person_habit():
-    return flask_back.DB.parser.add_person_habit(request.args.get('_id'),request.args.get('name'),request.args.get('start'), request.args.get('end'))
+    return jsonify(str(flask_back.DB.parser.add_person_habit(request.args.get('_id'),request.args.get('name'),request.args.get('start'), request.args.get('end'))))
 
 @app.route('/add_check_for_person_habit')
 @cross_origin(origin='*')
 def add_check_for_persons_habit():
-    return flask_back.DB.parser.add_check_for_person_habit(request.args.get('_id'),request.args.get('name'),request.args.get('start'), request.args.get('end'))
+    return jsonify(str(flask_back.DB.parser.add_check_for_person_habit(request.args.get('_id'),request.args.get('name'),request.args.get('start'), request.args.get('end'))))

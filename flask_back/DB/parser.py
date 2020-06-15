@@ -36,7 +36,7 @@ def add_person(login, password):
         db_persons.add({'login': str(login), 'password': str(password)})
         return True
     else:
-        return None
+        return False
 
 def check_person(login):
     '''
@@ -58,6 +58,8 @@ def add_person_habit(_id, name, start, end):
     '''
     db_habits = Habits()
     db_habits.add(name, _id, start, end)
+    
+    return True
 
 def add_check_for_person_habit(_id, name, start, end):
     '''
@@ -66,4 +68,6 @@ def add_check_for_person_habit(_id, name, start, end):
     '''
     db_habits = Habits()
     db_habits.add_check(name, _id, start, end)
+    
+    return True
 
