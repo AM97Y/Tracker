@@ -24,8 +24,8 @@ def authorization():
 @app.route('/get_person_data')
 @cross_origin(origin='*')
 def get_data(): 
-    hab = flask_back.DB.parser.get_person_data(request.args.get('_id'))[0]
-    return jsonify(name = hab['name'], start = hab['start'])
+    habs = flask_back.DB.parser.get_person_data(request.args.get('_id'))
+    return jsonify(results = habs)
     #jsonify({'data': flask_back.DB.parser.get_person_data(request.args.get('_id'))[0]})
 
 @app.route('/add_person')
