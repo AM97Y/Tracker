@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
 import os
+import json
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -25,7 +26,8 @@ def authorization():
 @cross_origin(origin='*')
 def get_data(): 
     habs = flask_back.DB.parser.get_person_data(request.args.get('_id'))
-    return jsonify({'results': habs})
+    return json.dumps(habs)
+    #return jsonify({'results': habs})
     #jsonify({'data': flask_back.DB.parser.get_person_data(request.args.get('_id'))[0]})
 
 @app.route('/add_person')
