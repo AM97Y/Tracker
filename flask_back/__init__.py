@@ -26,7 +26,7 @@ def authorization():
 @cross_origin(origin='*')
 def get_data(): 
     habs = flask_back.DB.parser.get_person_data(request.args.get('_id'))
-    return json.dumps(habs)
+    return jsonify(habs)
     #return jsonify({'results': habs})
     #jsonify({'data': flask_back.DB.parser.get_person_data(request.args.get('_id'))[0]})
 
