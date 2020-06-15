@@ -1,5 +1,3 @@
-import json
-import pymongo
 from pymongo import MongoClient
 import datetime
 from bson.objectid import ObjectId
@@ -12,7 +10,7 @@ class Habits():
     
     def __init__(self):
         
-        self.client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0-2quke.mongodb.net/test?retryWrites=true&w=majority")
+        self.client = MongoClient("mongodb+srv://admin:admin@cluster0-2quke.mongodb.net/test?retryWrites=true&w=majority")
         self.habits = self.client.habits.habits
              
     def add(self, name, id_user, start, end):
