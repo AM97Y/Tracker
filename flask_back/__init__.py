@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
 from bson.json_util import loads, dumps
+from bson.raw_bson import RawBSONDocument
+import bsonjs
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -24,10 +26,11 @@ def authorization():
 @app.route('/get_person_data')
 @cross_origin(origin='*')
 def get_data(): 
-    hab = (flask_back.DB.parser.get_person_data(request.args.get('_id')))[0]
-    print(hab)
-    json_str = loads(dumps(hab))
-    return json_str
+    habits = (flask_back.DB.parser.get_person_data(request.args.get('_id')))[0]
+    print(habits)
+    json_record2 = bsonjs.dumps(habits.raw)
+    print(json_record2)
+    return json_record2
     #return jsonify({'results': habs})
     #jsonify({'data': flask_back.DB.parser.get_person_data(request.args.get('_id'))[0]})
 
