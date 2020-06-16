@@ -6,7 +6,7 @@ from flask_cors import CORS, cross_origin
 import flask_back.DB.parser  
 from bson.json_util import loads, dumps
 from bson.raw_bson import RawBSONDocument
-import bsonjs
+import bson
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -28,7 +28,7 @@ def authorization():
 def get_data(): 
     habits = (flask_back.DB.parser.get_person_data(request.args.get('_id')))
     print({'results': habits})
-    json_record2 = bsonjs.dumps(RawBSONDocument(BSON.encode({'results': habits})).raw)
+    json_record2 = bsonjs.dumps(bson.BSON.encode({'results': habits}).raw)
     print(json_record2)
     return json_record2
     #return jsonify({'results': habs})
