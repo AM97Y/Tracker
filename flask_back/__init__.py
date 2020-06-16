@@ -7,6 +7,7 @@ import flask_back.DB.parser
 from bson.json_util import loads, dumps
 from bson.raw_bson import RawBSONDocument
 import bson
+import bsonjs
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
