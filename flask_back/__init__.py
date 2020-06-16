@@ -27,7 +27,7 @@ def authorization():
 @cross_origin(origin='*')
 def get_data(): 
     habits = (flask_back.DB.parser.get_person_data(request.args.get('_id')))
-    print({'results': habits})
+    print({'results': habits}.raw)
     json_record2 = bsonjs.dumps({'results': habits})
     print(json_record2)
     return json_record2
