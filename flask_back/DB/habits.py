@@ -52,6 +52,7 @@ class Habits():
    
     def delete(self, id_habit):
         self.habits.delete_one({ '_id': id_habit })
+        return True
     
     def update(self, last, new):
         self.habits.update_many(last, new)

@@ -55,5 +55,5 @@ def get_consecutive_days():
 @app.route('/delete_habit')
 @cross_origin(origin='*')
 def delete_habit():
-    db_habits = Habits().get_all()
+    db_habits = Habits()
     return jsonify(str(db_habits.delete(request.args.get('_id'))))
