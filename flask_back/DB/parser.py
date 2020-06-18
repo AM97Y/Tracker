@@ -1,8 +1,8 @@
-#from flask_back.DB.habits import Habits
-#from flask_back.DB.persons import Persons
+from flask_back.DB.habits import Habits
+from flask_back.DB.persons import Persons
 
-from habits import Habits
-from persons import Persons
+#from habits import Habits
+#from persons import Persons
 from bson.objectid import ObjectId
 
 def get_person_id(login='test', password='test'):
