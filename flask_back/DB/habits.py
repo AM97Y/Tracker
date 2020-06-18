@@ -51,7 +51,7 @@ class Habits():
         self.habits.save()
    
     def delete(self, id_habit):
-        self.habits.delete_one({ '_id': id_habit })
+        self.habits.delete_one({ '_id': ObjectId(id_habit) })
         return True
     
     def update(self, last, new):
