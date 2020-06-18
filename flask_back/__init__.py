@@ -8,6 +8,7 @@ from bson.json_util import loads, dumps
 from bson.raw_bson import RawBSONDocument
 import bson
 import bsonjs
+from flask_back.DB.habits import Habits
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -54,4 +55,5 @@ def get_consecutive_days():
 @app.route('/delete_habit')
 @cross_origin(origin='*')
 def delete_habit():
-    return jsonify(str(flask_back.DB.habits.delete(request.args.get('_id'))))
+    db_habits = Habits()
+    return jsonify(str(db_habits.delete(request.args.get('_id'))))
