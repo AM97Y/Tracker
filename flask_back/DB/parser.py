@@ -1,5 +1,8 @@
-from flask_back.DB.habits import Habits
-from flask_back.DB.persons import Persons
+#from flask_back.DB.habits import Habits
+#from flask_back.DB.persons import Persons
+
+from habits import Habits
+from persons import Persons
 from bson.objectid import ObjectId
 
 def get_person_id(login='test', password='test'):
@@ -67,7 +70,27 @@ def add_check_for_person_habit(_id, name, start, end):
     
     '''
     db_habits = Habits()
-    db_habits.add_check(name, _id, start, end)
-    
-    return True
 
+    return db_habits.add_check(name, _id, start, end)
+
+def get_consecutive_days(id_user, name):
+    '''
+    Возвращает кол-во последних подряд идущих дней выполнения.
+
+    '''
+    db_habits = Habits()
+    checks = db_habits.get_one(name, id_user)
+    count_day = 0
+    last_day = 0
+    
+    for check in checks['check']:
+        day_now = check.day
+        if last_day == 0:
+            last_day = day_now
+            count_day += 1
+        elif last_day == (check - timedelta(days=1)).day:
+            count_day += 1
+        else:
+            count_day = 0
+            last_day = 0
+    return count_day

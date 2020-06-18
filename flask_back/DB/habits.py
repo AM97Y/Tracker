@@ -25,6 +25,10 @@ class Habits():
         self.habits.insert(el)
     
     def add_check(self, name, id_user, start, end):
+       
+        if not(datetime.datetime.now() >= datetime.datetime.strptime(start, '%d-%m-%Y') and datetime.datetime.now() <= datetime.datetime.strptime(end, '%d-%m-%Y')):
+            return False
+        
         #Формат вроемени по договоренности '06-06-2018'
         el = {"name": str(name),
           	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
@@ -36,6 +40,8 @@ class Habits():
         check = list(find_elem[0]['check'])
         check.append(datetime.datetime.now())
         self.habits.update(el, {'$set': {'check': check}})
+        
+        return True
         
         
     def get(self, arg={'name': "Зарядка"}):
@@ -49,6 +55,12 @@ class Habits():
     
     def update(self, last, new):
         self.habits.update_many(last, new)
+        
+    def get_one(self, name, id_user):
+        el = {"name": str(name),
+             "id_user": ObjectId(id_user),
+             }
+        return self.habits.find_one(el)
 
     def get_all(self):
         return self.habits.find({})
