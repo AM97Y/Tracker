@@ -50,3 +50,8 @@ def add_check_for_persons_habit():
 @cross_origin(origin='*')
 def get_consecutive_days():
     return jsonify(str(flask_back.DB.parser.get_consecutive_days(request.args.get('_id'),request.args.get('name'))))
+
+@app.route('/delete_habit')
+@cross_origin(origin='*')
+def delete_habit():
+    return jsonify(str(flask_back.DB.habits.delete(request.args.get('_id'))))
