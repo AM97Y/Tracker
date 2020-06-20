@@ -65,7 +65,7 @@ def add_person_habit(_id, name, start, end):
     
     return True
 
-def add_check_for_person_habit(_id_habit, name, start, end):
+def add_check_for_person_habit(_id_habit, start, end):
     '''
     Добавляет информаци о выполнение привычки.
     
