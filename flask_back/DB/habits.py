@@ -1,5 +1,7 @@
 from pymongo import MongoClient
-import datetime
+import datetime	
+from datetime import date
+
 from bson.objectid import ObjectId
 
 class Habits():
@@ -24,22 +26,41 @@ class Habits():
         
         self.habits.insert(el)
     
-    def add_check(self, name, id_user, start, end):
-       
-        if not(datetime.datetime.now() >= datetime.datetime.strptime(start, '%d-%m-%Y') and datetime.datetime.now() <= datetime.datetime.strptime(end, '%d-%m-%Y')):
+    def add_check(self, _id_habit, start, end):
+        print(date.today())
+        if not(datetime.datetime.strptime(str(date.today()), '%Y-%m-%d') >= datetime.datetime.strptime(start, '%d-%m-%Y') and datetime.datetime.strptime(str(date.today()), '%Y-%m-%d') <= datetime.datetime.strptime(end, '%d-%m-%Y')):
             return False
         
         #Формат вроемени по договоренности '06-06-2018'
-        el = {"name": str(name),
+        el = {
           	 "start": datetime.datetime.strptime(start, '%d-%m-%Y'),
-             "id_user": ObjectId(id_user),
+             "_id": ObjectId(_id_habit),
           	 "end": datetime.datetime.strptime(end, '%d-%m-%Y'),
              }
         
         find_elem = self.habits.find(el)
         check = list(find_elem[0]['check'])
-        check.append(datetime.datetime.now())
-        self.habits.update(el, {'$set': {'check': check}})
+        if check.count(datetime.datetime.strptime(str(date.today()), '%Y-%m-%d')) == 0:
+            check.append(datetime.datetime.strptime(str(date.today()), '%Y-%m-%d'))
+            self.habits.update(el, {'$set': {'check': check}})
+        else:
+            return False
+        
+        return True
+    
+    def delete_check(self, _id_habit, data_del):
+
+        #Формат вроемени по договоренности '06-06-2018'
+        el = {"_id": ObjectId(_id_habit)}
+        
+        find_elem = self.habits.find(el)
+        check = list(find_elem[0]['check'])
+        try:
+            index = check.index(datetime.datetime.strptime(data_del, '%d-%m-%Y'))
+            check.pop(index)
+            self.habits.update(el, {'$set': {'check': check}})
+        except:
+            return False
         
         return True
         
@@ -57,9 +78,9 @@ class Habits():
     def update(self, last, new):
         self.habits.update_many(last, new)
         
-    def get_one(self, name, id_user):
-        el = {"name": str(name),
-             "id_user": ObjectId(id_user),
+    def get_one(self, _id_habit):
+        el = {
+             "_id": ObjectId(_id_habit),
              }
         return self.habits.find_one(el)
 

@@ -1,5 +1,6 @@
 from flask_back.DB.habits import Habits
 from flask_back.DB.persons import Persons
+from datetime import timedelta
 
 #from habits import Habits
 #from persons import Persons
@@ -64,22 +65,31 @@ def add_person_habit(_id, name, start, end):
     
     return True
 
-def add_check_for_person_habit(_id, name, start, end):
+def add_check_for_person_habit(_id_habit, name, start, end):
     '''
     Добавляет информаци о выполнение привычки.
     
     '''
     db_habits = Habits()
 
-    return db_habits.add_check(name, _id, start, end)
+    return db_habits.add_check( _id_habit, start, end)
 
-def get_consecutive_days(id_user, name):
+def del_check_for_person_habit(_id_habit, data_del):
+    '''
+    Удаляет информаци о выполнение привычки.
+    
+    '''
+    db_habits = Habits()
+
+    return db_habits.delete_check(_id_habit, data_del)
+
+def get_consecutive_days(_id_habit):
     '''
     Возвращает кол-во последних подряд идущих дней выполнения.
 
     '''
     db_habits = Habits()
-    checks = db_habits.get_one(name, id_user)
+    checks = db_habits.get_one(_id_habit)
     count_day = 0
     last_day = 0
     
@@ -94,3 +104,9 @@ def get_consecutive_days(id_user, name):
             count_day = 0
             last_day = 0
     return count_day
+
+#add_person_habit("5ee2258f2f9c980b83d39e07", "НЕ ГРЫЗТЬ МЕБЕЛЬ2!", "06-06-2019", "06-06-2021")
+#add_check_for_person_habit("5ee2258f2f9c980b83d39e07", "НЕ ГРЫЗТЬ МЕБЕЛЬ2!", "06-06-2019", "06-06-2021")
+#print(get_person_data("5ee2258f2f9c980b83d39e07"))
+#del_check_for_person_habit("5ee2258f2f9c980b83d39e07", "НЕ ГРЫЗТЬ МЕБЕЛЬ2!", "06-06-2019", "06-06-2021", "21-06-2020")
+#print(get_person_data("5ee2258f2f9c980b83d39e07"))

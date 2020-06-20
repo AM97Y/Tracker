@@ -45,15 +45,20 @@ def add_person_habit():
 @app.route('/add_check_for_person_habit')
 @cross_origin(origin='*')
 def add_check_for_persons_habit():
-    return jsonify(str(flask_back.DB.parser.add_check_for_person_habit(request.args.get('_id'),request.args.get('name'),request.args.get('start'), request.args.get('end'))))
+    return jsonify(str(flask_back.DB.parser.add_check_for_person_habit(request.args.get('_id_habit'),request.args.get('start'), request.args.get('end'))))
 
 @app.route('/get_consecutive_days')
 @cross_origin(origin='*')
 def get_consecutive_days():
-    return jsonify(str(flask_back.DB.parser.get_consecutive_days(request.args.get('_id'),request.args.get('name'))))
+    return jsonify(str(flask_back.DB.parser.get_consecutive_days(request.args.get('_id_habit'))))
 
 @app.route('/delete_habit')
 @cross_origin(origin='*')
 def delete_habit():
     db_habits = Habits()
-    return jsonify(str(db_habits.delete(request.args.get('_id'))))
+    return jsonify(str(db_habits.delete(request.args.get('_id_habit'))))
+
+@app.route('/delete_check')
+@cross_origin(origin='*')
+def del_check_for_person_habit():
+    return jsonify(str(flask_back.DB.parser.del_check_for_person_habit(request.args.get('_id_habit'), request.args.get('data_del'))))
